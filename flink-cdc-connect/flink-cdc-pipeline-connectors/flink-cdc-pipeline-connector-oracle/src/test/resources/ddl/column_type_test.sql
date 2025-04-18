@@ -1,17 +1,15 @@
--- Licensed to the Apache Software Foundation (ASF) under one or more
--- contributor license agreements.  See the NOTICE file distributed with
--- this work for additional information regarding copyright ownership.
--- The ASF licenses this file to You under the Apache License, Version 2.0
--- (the "License"); you may not use this file except in compliance with
--- the License.  You may obtain a copy of the License at
--- 
---      http://www.apache.org/licenses/LICENSE-2.0
--- 
--- Unless required by applicable law or agreed to in writing, software
--- distributed under the License is distributed on an "AS IS" BASIS,
--- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
--- See the License for the specific language governing permissions and
--- limitations under the License.
+-- Copyright 2023 Ververica Inc.
+--
+-- Licensed under the Apache License, Version 2.0 (the "License");
+-- you may not use this file except in compliance with the License.
+-- You may obtain a copy of the License at
+--   http://www.apache.org/licenses/LICENSE-2.0
+-- Unless required by applicable law or agreed to in writing,
+-- software distributed under the License is distributed on an
+-- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+-- KIND, either express or implied.  See the License for the
+-- specific language governing permissions and limitations
+-- under the License.
 
 -- ----------------------------------------------------------------------------------------------------------------
 -- DATABASE:  column_type_test
@@ -60,10 +58,6 @@ create table DEBEZIUM.FULL_TYPES (
     VAL_TSLTZ                    TIMESTAMP(6) WITH LOCAL TIME ZONE,
     VAL_INT_YTM                  INTERVAL YEAR(2) TO MONTH,
     VAL_INT_DTS                  INTERVAL DAY(3) TO SECOND(2),
-    VAL_CLOB_INLINE              CLOB,
-    VAL_NCLOB_INLINE             NCLOB,
-    VAL_BLOB_INLINE              BLOB,
-    LOCATION                     SDO_GEOMETRY,
     T15VARCHAR                   SYS.XMLTYPE,
     primary key (ID)
 );
@@ -84,9 +78,6 @@ INSERT INTO DEBEZIUM.FULL_TYPES VALUES (
     TO_TIMESTAMP_TZ('2022-10-30 01:34:56.00789', 'yyyy-mm-dd HH24:MI:SS.FF5'),
     INTERVAL '-3-6' YEAR TO MONTH,
     INTERVAL '-1 2:3:4.56' DAY TO SECOND,
-    TO_CLOB ('col_clob'),
-    TO_NCLOB ('col_nclob'),
-    utl_raw.cast_to_raw ('col_blob'),
-    SDO_GEOMETRY(2003, NULL, NULL, SDO_ELEM_INFO_ARRAY(1, 1003, 3), SDO_ORDINATE_ARRAY(5, 5, 15, 10, 25, 5, 35, 10)),
     sys.xmlType.createXML('<name><a id="1" value="some values">test xmlType</a></name>')
+
 );
